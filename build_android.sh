@@ -42,6 +42,7 @@ for ABI in "${ANDROID_ABIS[@]}"; do
         -DANDROID_NATIVE_API_LEVEL=21 \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=ON \
+        -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-z,max-page-size=16384" \
         -DCMAKE_INSTALL_PREFIX="$ABI_OUTPUT_DIR"
     
     cmake --build "$ABI_BUILD_DIR/shared" --target install -j$NUM_CORES
